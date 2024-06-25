@@ -8,7 +8,10 @@ use App\Models\Customer;
 class CustomerController extends Controller
 {
     public function create(){
-        return view("customer");
+        $url = url("/customer");
+        $title = "Customer Registration";
+        $data = compact('url', 'title');
+        return view("customer")->with($data);
     }
 
     public function store(Request $request)
@@ -52,5 +55,27 @@ class CustomerController extends Controller
         $data = compact("customers");
         return view("customer-view")->with($data);
 
+    }
+
+    public function delete($id)
+    {
+        $customer = Customer::find($id);
+        if(!is_null($customer)){
+            $customer->delete();
+        }
+        return redirect('customer');
+    }
+
+    public function edit($id)
+    {
+        $customer = Customer::find($id);
+        if(is_null($customer)){
+            return redirect("customer");
+        } else{ 
+            $url = url('/customer/update') .'/' .$id;
+            $title = "Update Customer";
+            $data = compact('customer', 'url', 'title');
+            return view('customer')->with($data);
+        }
     }
 }

@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container border p-2 mt-5" >
-    <h2 class="text-center my-3 text-primary">Registration Form</h2>
-<form action="{{url('/')}}/customer" class="px-3" method="post">
+    <h2 class="text-center my-3 text-primary">{{$title}}</h2>
+<form action="{{$url}}" class="px-3" method="post">
     @csrf
     @php
     $demo = 1;
@@ -19,7 +19,7 @@
             <div  style="width: 50%;" class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name"
-                value="{{old('name')}}" placeholder="Enter your name">
+                value="{{old('name')}} {{$customer->name}}" placeholder="Enter your name">
                 <span class="text-danger">
                     @error("name")
                     {{$message}}
@@ -31,7 +31,7 @@
             <div  style="width: 50%;" class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email"
-                value="{{old('email')}}" placeholder="Enter your email">
+                value="{{old('email')}} {{$customer->email}}" placeholder="Enter your email">
                 <span class="text-danger">
                     @error("email")
                     {{$message}}
@@ -44,7 +44,7 @@
             <div  style="width: 50%;" class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password"
-                value="{{old('password')}}" placeholder="Enter your password">
+                value="{{old('password')}} {{$customer->password}}" placeholder="Enter your password">
                 <span class="text-danger">
                     @error("password")
                     {{$message}}
@@ -56,7 +56,7 @@
             <div  style="width: 50%;" class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" class="form-control" id="confirmPassword" name="confirm_password" 
-                value="{{old('confirmPassword')}}" placeholder="Confirm your password">
+                value="{{old('confirmPassword')}} {{$customer->confirmPassword}}" placeholder="Confirm your password">
                 <span class="text-danger">
                     @error("confirm_password")
                     {{$message}}
@@ -71,7 +71,7 @@
             <div  style="width: 50%;" class="form-group">
                 <label for="country">Country</label>
                 <input type="text" class="form-control" id="country" name="country"
-                value="{{old('country')}}" placeholder="Enter your country">
+                value="{{old('country')}} {{$customer->country}}" placeholder="Enter your country">
                 <span class="text-danger">
                     @error("country")
                     {{$message}}
@@ -83,7 +83,7 @@
             <div  style="width: 50%;" class="form-group">
                 <label for="state">State</label>
                 <input type="text" class="form-control" id="state" name="state"
-                value="{{old('state')}}" placeholder="Enter your state">
+                value="{{old('state')}} {{$customer->state}}" placeholder="Enter your state">
                 <span class="text-danger">
                     @error("state")
                     {{$message}}
@@ -96,8 +96,8 @@
             <!-- Address -->
             <div class="">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" id="address" name="address"
-                value="{{old('address')}}" placeholder="Enter your address">
+                <textarea type="text" class="form-control" id="address" name="address"
+                value="{{old('address')}} {{$customer->address}}" placeholder="Enter your address"></textarea>
                 <span class="text-danger">
                     @error("address")
                     {{$message}}
@@ -111,18 +111,18 @@
                 <label>Gender</label><br>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="male"
-                     name="gender" value="male" {{ old( 'gender' ) == 'male' ? 'checked' : '' }}>
+                     name="gender" value="male" {{ old( 'gender', $customer->gender ) == 'male' ? 'checked' : '' }} >
                     <label class="form-check-label" for="male">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="female" 
-                    name="gender" value="female" {{ old( 'gender' ) == 'female' ? 'checked' : '' }}>                   
+                    name="gender" value="female" {{ old( 'gender', $customer->gender ) == 'female' ? 'checked' : '' }}>                   
                     <label class="form-check-label" for="female">Female</label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="other" 
-                    name="gender" value="other" {{old( 'gender' ) == 'other' ? 'checked' : ''}} >
+                    name="gender" value="other" {{old( 'gender', $customer->gender ) == 'other' ? 'checked' : ''}} >
                     <label class="form-check-label" for="other">Other</label>                
                 </div>
                 <span class="text-danger">
@@ -135,7 +135,7 @@
             <div  style="width: 50%;" class="form-group">
                 <label for="dob">Date of Birth</label>
                 <input type="date" name="dob"
-                vale="{{old('dob')}}" class="form-control" id="dob">
+                value="{{old('dob')}} {{$customer->dob}}" class="form-control" id="dob">
                 <span class="text-danger">
                     @error("dob")
                     {{$message}}

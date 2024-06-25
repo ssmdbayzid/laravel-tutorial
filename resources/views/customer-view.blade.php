@@ -40,7 +40,7 @@
       <td>
         @if($customer->status =="1")
         <a href="">
-       <span class="badge badge-primary">Active</span> 
+       <span class="badge badge-success">Active</span> 
        </a>
         @else
         <a href="">
@@ -48,8 +48,14 @@
         </a>
         @endif
     </td>
-      <td>
+      <td class="d-flex">
+        <!-- <a href="{{url('/customer/delete')}}/{{$customer->customer_id}}"> useing url --> 
+        <a href="{{route('customer.delete', ['id' => $customer->customer_id])}}" class="mr-2"> <!---- Using route name -->
         <div class="btn btn-danger">Delete</div>
+        </a>
+        <a href="{{route('customer.edit', ['id' => $customer->customer_id])}}">
+        <div class="btn btn-primary">Edit</div>
+        </a>
       </td>
     </tr>
     @endforeach
