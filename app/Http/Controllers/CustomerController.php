@@ -78,4 +78,21 @@ class CustomerController extends Controller
             return view('customer')->with($data);
         }
     }
+
+    public function update($id, Request $request)
+    {
+        p($request->all());
+        die;
+        $customer = Customer::find($id);
+        $customer->name = $request['name'];
+            $customer->email = $request['email'];
+            $customer->gender = $request['gender'];
+            $customer->address = $request['address'];
+            $customer->country = $request['country'];
+            $customer->state = $request['state'];            
+            $customer->dob = $request['dob'];            
+            $customer->save();
+
+            return redirect('/customer');
+    }
 }

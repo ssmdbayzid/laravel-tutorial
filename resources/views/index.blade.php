@@ -21,7 +21,7 @@
         <a class="nav-link" href="{{url('/register')}}">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('customer.create')}}">Customer</a>
+        <a class="nav-link" href="{{url('/customer')}}">Customer</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

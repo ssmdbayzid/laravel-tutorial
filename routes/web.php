@@ -39,12 +39,13 @@ Route::get("/register", [RegistrationController::class, "index"]);
 
 Route::post("/register", [RegistrationController::class, "registration"]);
  
-Route::get("/customer/create", [CustomerController::class, "create"])->name('customer.create');
 Route::post("/customer", [CustomerController::class, "store"]);
 Route::get("/customer", [CustomerController::class, "view"]);
+
+Route::get("/customer/create", [CustomerController::class, "create"])->name('customer.create');
 Route::get("/customer/delete/{id}", [CustomerController::class, "delete"])->name("customer.delete");
 Route::get("/customer/edit/{id}", [CustomerController::class, "edit"])->name("customer.edit");
-Route::get("/customer/update/{id}", [CustomerController::class, "update"])->name("customer.update");
+Route::post("/customer/update/{id}", [CustomerController::class, "update"])->name("customer.update");
 
 // Route::get("/customer", function(){
 //     $customers = Customer::all();
